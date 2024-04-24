@@ -2,7 +2,7 @@ body{
     margin:0;
     padding:0;
     font-family: Verdana;
-    background-color: whitesmoke;
+    background-color:rgb(35, 40, 35) ;
     color: whitesmoke;
 }
 
@@ -13,7 +13,8 @@ body{
     
 }
 
-.header{
+
+.header {
     border-bottom:3px solid rgb(80,80,205);
     background-image: -webkit-linear-gradient(right,#52ca79,#73a6df,#11119c,#4b0082,#cd853f,#ff0000 );
 }
@@ -23,4 +24,17 @@ body{
     align-items: center;
     height: 100%;
   }
+
+
+
+.logo{
+    width: 200px;
+    height:200px;
+  }
  
+ .titulo{
+    
+    display:flex;
+    align-items: center;
+
+ }

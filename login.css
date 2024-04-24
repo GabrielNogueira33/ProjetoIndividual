@@ -1,9 +1,9 @@
 body{
-    margin:0;
-    padding:0;
-    font-family: Verdana;
-    background-color: whitesmoke;
-    color: whitesmoke;
+  margin:0;
+  padding:0;
+  font-family: Verdana;
+  background-color:rgb(35, 40, 35) ;
+  color: whitesmoke;
 }
 
 .container{
@@ -40,4 +40,16 @@ body{
 .titulo-login{
     display:flex;
     justify-content: center;
+}
+
+.logo{
+  width: 200px;
+  height:200px;
+}
+
+.titulo{
+    
+  display:flex;
+  align-items: center;
+  
 }
