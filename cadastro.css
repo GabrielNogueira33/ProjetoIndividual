@@ -1,0 +1,43 @@
+body{
+    margin:0;
+    padding:0;
+    font-family: Verdana;
+    background-color: whitesmoke;
+    color: whitesmoke;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+.header{
+    border-bottom:3px solid rgb(80,80,205);
+    background-image: -webkit-linear-gradient(left,#ea8711,#d96363,#73a6df,#9085fb,#52ca79);
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .navbar {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: #e3b062;
+  }
+
+.campo{
+
+    display:flex;
+    justify-content: center;
+  }
+.titulo-cadastro{
+    display:flex;
+    justify-content: center;
+}
