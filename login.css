@@ -1,7 +1,7 @@
 body{
   margin:0;
   padding:0;
-  font-family: Verdana;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   background-color:rgb(35, 40, 35) ;
   color: whitesmoke;
 }
@@ -17,20 +17,18 @@ body{
     background-image: -webkit-linear-gradient(right ,#ff0000,#ea8711,#d96363,#52ca79,#9085fb,#50CDCD,#73a6df);
 }
 
+.header a{
+
+  color:gold;
+}
+
 .header .container {
     justify-content: space-between;
     align-items: center;
     height: 100%;
   }
 
-  .navbar {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    list-style: none;
-    color: #e3b062;
-  }
+ 
 
 .campo{
 

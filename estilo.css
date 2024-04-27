@@ -1,7 +1,7 @@
 body{
     margin:0;
     padding:0;
-    font-family: Verdana;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     background-color:rgb(35, 40, 35) ;
     color: whitesmoke;
 }
@@ -17,6 +17,11 @@ body{
 .header {
     border-bottom:3px solid rgb(80,80,205);
     background-image: -webkit-linear-gradient(right,#52ca79,#73a6df,#11119c,#4b0082,#cd853f,#ff0000 );
+}
+
+.header a{
+
+    color:gold;
 }
 
 .header .container {
@@ -37,4 +42,25 @@ body{
     display:flex;
     align-items: center;
 
+ }
+
+
+ .DentroSite{
+    text-align: center;
+
+ }
+
+ .header h1{
+
+    margin: 0;
+ }
+
+ .ODS10{
+
+    height:200px;
+ }
+
+ .ODS16{
+
+    height:200px;
  }
