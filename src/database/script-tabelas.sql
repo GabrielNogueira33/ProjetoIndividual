@@ -6,14 +6,17 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE pound;
 
-USE aquatech;
+USE pound;
 
-CREATE TABLE empresa (
+CREATE TABLE pesquisaMusica (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14)
+	musica VARCHAR(50)
+);
+CREATE TABLE pesquisaJogos (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	jogo VARCHAR(50)
 );
 
 CREATE TABLE usuario (
@@ -21,8 +24,10 @@ CREATE TABLE usuario (
 	nome VARCHAR(50),
 	email VARCHAR(50),
 	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+	fk_musica INT,
+    fk_jogo INT,
+	FOREIGN KEY (fk_musica) REFERENCES pesquisaMusica(id),
+    FOREIGN KEY (fk_jogo) REFERENCES pesquisaJogos(id)
 );
 
 CREATE TABLE aviso (
@@ -33,29 +38,21 @@ CREATE TABLE aviso (
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
-);
+insert into pesquisaMusica (musica) values ('Pop'),
+('Rock'),
+('Funk'),
+('Trap'),
+('Reggae'),
+('K-pop'),
+('Samba'),
+('Forró');
+insert into pesquisaJogos (jogo) values ('FPS'),
+('RPG'),
+('Mundo aberto'),
+('Sandbox'),
+('Sobrevivência'),
+('Terror'),
+('Musical'),
+('MOBA');
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
-
-insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
 select * from usuario;
-alter table usuario add column cpf char(14);

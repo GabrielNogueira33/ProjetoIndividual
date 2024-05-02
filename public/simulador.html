@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Simulador</title>
+    <title>Pound | Fórum</title>
 
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="icon" href="./imagens/pixel-art-logo.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -20,12 +20,15 @@
     <!--header inicio-->
     <div class="header">
         <div class="container">
-            <h1 class="titulo">AquaTech</h1>
+            <h1 class="titulo"><img class="logo" src="./imagens/pixel-art-logo.png">Pound</h1>
             <ul class="navbar">
                 <li>
                     <a href="./index.html">Inicial</a>
                 </li>
-                <li class="agora">Simulador</li>
+                <li class="agora">Fórum</li>
+                <li>
+                    <a href="./objetivos.html">Objetivos</a>
+                </li>
                 <li>|</li>
                 <li>
                     <a href="./login.html">Login</a>
@@ -33,6 +36,7 @@
                 <li>
                     <a href="./login.html">Cadastro</a>
                 </li>
+
             </ul>
         </div>
     </div>
@@ -41,28 +45,20 @@
     <!-- simulador inicio -->
     <div class="simulador">
         <div class="container">
-            <h2>Simulador</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-
+            <h2>Fórum</h2>
+            <div class="thread">
+                <h2>Como jogar CS 2 ?</h2> <button>
+                    Mostrar respostas
+                </button>
+                <div style="display:none;" class="respostas">
+                    <p>corre, avista inimigo, para e atira!</p>
+                    <hr>
+                    <form>
+                        <textarea></textarea>
+                        <input type="submit" name="acao" value="Enviar!">
+                    </form>
+                </div>
+            </div><!--thread-->
         </div>
     </div>
     <!-- simulador fim -->
@@ -80,3 +76,28 @@
 </body>
 
 </html>
+
+<script>
+
+ 
+    let buttonsResposta = document.querySelectorAll('.thread button');
+
+    for (let i = 0; i < buttonsResposta.length; i++) {
+        buttonsResposta[i].addEventListener('click', () => {
+            let respostas = document.querySelectorAll('.respostas');
+            respostas[i].style.display = "block"
+        })
+
+    }
+
+    let forms = document.querySelectorAll('form');
+
+    for(let i = 0; i < forms.length; i++){
+        forms[i].addEventListener('submit', (e)=>{
+            e.preventDefault();
+            let conteudo = document.querySelectorAll('textarea')[i];
+            forms[i].insertAdjacentHTML('beforebegin', `<p> ${conteudo.value}<p>`)
+                conteudo.value = ``
+        })
+    }
+</script>

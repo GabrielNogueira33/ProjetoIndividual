@@ -11,7 +11,7 @@
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <link rel="icon" href="./imagens/pixel-art-logo.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
@@ -25,7 +25,7 @@
           <a href="index.html">Inicial</a>
         </li>
         <li>
-          <a href="simulador.html">Simulador</a>
+          <a href="simulador.html">Fórum</a>
         </li>
         <li>
           <a href="objetivos.html">Objetivos</a>
@@ -57,7 +57,18 @@
                          Assim que inserir vá para o script abaixo.
                      -->
 
-            
+                     <div class="campo">
+                      <span>Estilo de jogos prediletos:</span>
+                      <select name="jogos" id="listaJogos_select">
+                        <option selected>Selecione um estilo de jogo favorito</option>
+                      </select>
+                    </div>
+                    <div class="campo">
+                      <span>Estilo de música predileto:</span>
+                      <select name="musicas" id="listaMusicas_select">
+                        <option selected>Selecione um estilo musical favorito</option>
+                      </select>
+                    </div>
        <div class="campo">
            <span>E-mail:</span>
            <input id="email_input" type="text" placeholder="biel@gmail.com">
@@ -108,11 +119,15 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var musicaVar = listaMusicas_select.value;
+    var jogosVar = listaJogos_select.value;
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == ""
+      confirmacaoSenhaVar == "" ||
+      musicaVar == "" ||
+      jogosVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
