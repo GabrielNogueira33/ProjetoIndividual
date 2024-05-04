@@ -34,7 +34,7 @@
                     <a href="./login.html">Login</a>
                 </li>
                 <li>
-                    <a href="./login.html">Cadastro</a>
+                    <a href="./cadastro.html">Cadastro</a>
                 </li>
 
             </ul>
@@ -42,8 +42,8 @@
     </div>
 
 
-    <!-- simulador inicio -->
-    <div class="simulador">
+    <!-- fórum inicio -->
+    <div class="forum">
         <div class="container">
             <h2>Fórum</h2>
             <div class="thread">
@@ -59,9 +59,18 @@
                     </form>
                 </div>
             </div><!--thread-->
+            <button id="button_topico" onclick="criarTopico()">
+                Criar tópico
+            </button>
+            <!-- --><!--thread criada por usuario-->
+            <div id="criacao_forum" style="display:none">
+               Insira o titulo:<input id="input_titulo"/>
+                <button id="button_criarTitulo">Criar </button>
+                <div id="insercao_topico"></div>
+            </div>
         </div>
     </div>
-    <!-- simulador fim -->
+    <!-- fórum fim -->
 
     <!--footer inicio-->
     <div class="footer">
@@ -79,8 +88,40 @@
 
 <script>
 
- 
-    let buttonsResposta = document.querySelectorAll('.thread button');
+   
+    let criacaoForum = document.getElementById('criacao_forum');
+    let buttonCriarTopico = document.getElementById('button_topico');
+    let buttonCriarTitulo = document.getElementById('button_criarTitulo');
+    let insercaoTopico = document.getElementById('insercao_topico')
+
+    buttonCriarTopico.addEventListener('click', () => {
+    criacaoForum.style.display = 'block';
+});
+
+    buttonCriarTopico.addEventListener('click', () =>{
+        let tituloForum = document.getElementById('input_titulo').value
+        if(tituloForum.trim() != ''){
+            insercaoTopico.innerHTML += `
+            <div class="thread">
+                <h2>${tituloForum}</h2>
+                <button>Mostrar respostas</button>
+                <div style="display:none;" class="respostas">
+                    <form>
+                        <textarea></textarea>
+                        <input type="submit" name="acao" value="Enviar!">
+                    </form>
+                </div>
+            </div>`;
+            criacaoForum.style.display = 'none';
+            document.getElementById('input_titulo').value = '';
+            anexar();
+        }
+        else{
+            alert('O título não pode estar vázio!')
+        }  
+    })
+    function anexar(){  
+let buttonsResposta = document.querySelectorAll('.thread button');
 
     for (let i = 0; i < buttonsResposta.length; i++) {
         buttonsResposta[i].addEventListener('click', () => {
@@ -100,4 +141,5 @@
                 conteudo.value = ``
         })
     }
+}
 </script>

@@ -183,7 +183,7 @@ body{
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/guitarra.jpg');
+  background-image: url('../assets/imgs/fliperama.jpg');
   background-size: cover;
 }
 
@@ -347,11 +347,11 @@ input {
 
 /* FÓRUM */
 
-.simulador {
+.forum {
   color: white;
 }
 
-.simulador .container {
+.forum .container {
   flex-direction: column;
   overflow: scroll; 
   height: var(--tamanho-simulador);
