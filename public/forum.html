@@ -46,6 +46,13 @@
     <div class="forum">
         <div class="container">
             <h2>Fórum</h2>
+            <button id="button_topico" onclick="criarTopico()" style="height: 20px; width: 200px;">
+                Criar tópico
+            </button>
+            <div id="criacao_forum" style="display:none"><br>
+                Insira o titulo:<input id="input_titulo" />
+                <button id="button_criarTitulo">Criar </button>
+            </div>
             <div class="thread">
                 <h2>Como jogar CS 2 ?</h2> <button>
                     Mostrar respostas
@@ -59,15 +66,7 @@
                     </form>
                 </div>
             </div><!--thread-->
-            <button id="button_topico" onclick="criarTopico()">
-                Criar tópico
-            </button>
-            <!-- --><!--thread criada por usuario-->
-            <div id="criacao_forum" style="display:none">
-               Insira o titulo:<input id="input_titulo"/>
-                <button id="button_criarTitulo">Criar </button>
-                <div id="insercao_topico"></div>
-            </div>
+            <div id="insercao_topico"></div>
         </div>
     </div>
     <!-- fórum fim -->
@@ -88,19 +87,20 @@
 
 <script>
 
-   
+
     let criacaoForum = document.getElementById('criacao_forum');
     let buttonCriarTopico = document.getElementById('button_topico');
     let buttonCriarTitulo = document.getElementById('button_criarTitulo');
     let insercaoTopico = document.getElementById('insercao_topico')
 
     buttonCriarTopico.addEventListener('click', () => {
-    criacaoForum.style.display = 'block';
-});
+        criacaoForum.style.display = 'block';
+    });
 
-    buttonCriarTopico.addEventListener('click', () =>{
+    buttonCriarTitulo.addEventListener('click', () => {
         let tituloForum = document.getElementById('input_titulo').value
-        if(tituloForum.trim() != ''){
+        if (tituloForum.trim() != '') {
+            // DÁ PRA USAR forEach e section ao inves desse inner
             insercaoTopico.innerHTML += `
             <div class="thread">
                 <h2>${tituloForum}</h2>
@@ -116,30 +116,30 @@
             document.getElementById('input_titulo').value = '';
             anexar();
         }
-        else{
+        else {
             alert('O título não pode estar vázio!')
-        }  
+        }
     })
-    function anexar(){  
-let buttonsResposta = document.querySelectorAll('.thread button');
+    function anexar() {
+        let buttonsResposta = document.querySelectorAll('.thread button');
 
-    for (let i = 0; i < buttonsResposta.length; i++) {
-        buttonsResposta[i].addEventListener('click', () => {
-            let respostas = document.querySelectorAll('.respostas');
-            respostas[i].style.display = "block"
-        })
+        for (let i = 0; i < buttonsResposta.length; i++) {
+            buttonsResposta[i].addEventListener('click', () => {
+                let respostas = document.querySelectorAll('.respostas');
+                respostas[i].style.display = "block"
+            })
 
-    }
+        }
 
-    let forms = document.querySelectorAll('form');
+        let forms = document.querySelectorAll('form');
 
-    for(let i = 0; i < forms.length; i++){
-        forms[i].addEventListener('submit', (e)=>{
-            e.preventDefault();
-            let conteudo = document.querySelectorAll('textarea')[i];
-            forms[i].insertAdjacentHTML('beforebegin', `<p> ${conteudo.value}<p>`)
+        for (let i = 0; i < forms.length; i++) {
+            forms[i].addEventListener('submit', (e) => {
+                e.preventDefault();
+                let conteudo = document.querySelectorAll('textarea')[i];
+                forms[i].insertAdjacentHTML('beforebegin', `<p> ${conteudo.value}<p>`)
                 conteudo.value = ``
-        })
+            })
+        }
     }
-}
 </script>
