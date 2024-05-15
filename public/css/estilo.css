@@ -194,7 +194,7 @@ body{
 }
 
 .card {
-  width: 50%;
+  width: 50vw;
   background-color: rgb(35, 40, 35);
   border-radius: 10px;
   display: flex;
@@ -202,7 +202,20 @@ body{
   justify-content: space-evenly;
   color: rgb(248, 146, 146);
   flex-direction: column;
-  height: fit-content;
+  height: 77vh;
+  padding: 20px 0;
+  margin: 5%;
+}
+.card-login {
+  width: 50vw;
+  background-color: rgb(35, 40, 35);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: rgb(248, 146, 146);
+  flex-direction: column;
+  height: 50vh;
   padding: 20px 0;
   margin: 5%;
 }
