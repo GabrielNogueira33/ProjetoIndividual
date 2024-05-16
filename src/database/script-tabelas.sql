@@ -41,18 +41,13 @@ CREATE TABLE aviso (
 insert into pesquisaMusica (musica) values ('Pop'),
 ('Rock'),
 ('Funk'),
-('Trap'),
-('Reggae'),
 ('K-pop'),
-('Samba'),
-('Forró');
+('Samba');
 insert into pesquisaJogos (jogo) values ('FPS'),
 ('RPG'),
 ('Mundo aberto'),
-('Sandbox'),
 ('Sobrevivência'),
-('Terror'),
-('Musical'),
-('MOBA');
+('Terror');
 
 select * from usuario;
+select * from PesquisaJogos;

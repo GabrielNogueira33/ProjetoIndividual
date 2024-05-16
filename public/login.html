@@ -67,7 +67,7 @@
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                    <img src="./assets/pac-man-transparente.gif" id="loading-gif">
                 </div>
 
                 <div id="div_erros_login"></div>
@@ -96,10 +96,11 @@
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
+        let validarCamposVazios = emailVar == "" || senhaVar == "";
 
-        if (emailVar == "" || senhaVar == "") {
+        if (validarCamposVazios) {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Erro: Preencha os campos necessários!";
             finalizarAguardar();
             return false;
         }

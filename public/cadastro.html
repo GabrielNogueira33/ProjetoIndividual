@@ -58,15 +58,15 @@
                      -->
 
                      <div class="campo">
-                      <span>Estilo de jogos prediletos:</span>
+                      <span>Estilo de jogo predileto:</span>
                       <select name="jogos" id="listaJogos_select">
-                        <option selected>Selecione um estilo de jogo favorito</option>
+                        <option value="#" selected>Selecione um estilo de jogo favorito</option>
                       </select>
                     </div>
                     <div class="campo">
                       <span>Estilo de música predileto:</span>
                       <select name="musicas" id="listaMusicas_select">
-                        <option selected>Selecione um estilo musical favorito</option>
+                        <option value="#" selected>Selecione um estilo musical favorito</option>
                       </select>
                     </div>
        <div class="campo">
@@ -89,7 +89,7 @@
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
        
         <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
+          <img src="./assets/pac-man-transparente.gif" id="loading-gif" />
         </div>
 
         <div id="div_erros_login"></div>
@@ -118,36 +118,46 @@
     var nomeVar = nickname_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var confirmacaoSenhaVar = confirmar_senha_input.value;
     var musicaVar = listaMusicas_select.value;
     var jogosVar = listaJogos_select.value;
-    if (
-      nomeVar == "" ||
+
+    // validações dos campos
+    let validacaoCamposVazios = nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      musicaVar == "" ||
-      jogosVar == ""
-    ) {
+      musicaVar == "#" ||
+      jogosVar == "#";
+    let validacaoNome = nomeVar.length <= 1;
+    let validacaoEmail = emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1;
+    let validacaoSenha = senhaVar.length <= 6 || senhaVar !== confirmacaoSenhaVar;
+
+    if (validacaoCamposVazios) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "Erro: Preencha todos os campos";
 
-      finalizarAguardar();
+        finalizarAguardar();
       return false;
     }
-    else if (nomeVar.length <= 1 ||
-      emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1||
-      senhaVar.length <= 6 ||
-      confirmacaoSenhaVar != senhaVar
+     else if (validacaoNome ||
+    validacaoEmail
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para informações erradas)";
+        "Erro : Preencha informações validas";
 
-      finalizarAguardar();
+        finalizarAguardar();
       return false;
-    } else {
+    } else if(!validacaoSenha){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Erro : Preencha uma senha igual a confirmação ou com 6 caracteres para cima";
+        finalizarAguardar();
+      return false;
+    }
+     else {
       setInterval(sumirMensagem, 5000);
     }
 
@@ -160,6 +170,8 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
+        jogosServer:jogosVar,
+        musicaServer: musicaVar,
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
@@ -176,7 +188,7 @@
 
           setTimeout(() => {
             window.location = "login.html";
-          }, "2000");
+          }, "3000");
 
           limparFormulario();
           finalizarAguardar();
