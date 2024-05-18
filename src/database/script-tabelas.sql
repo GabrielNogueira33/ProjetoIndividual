@@ -10,10 +10,6 @@ CREATE DATABASE pound;
 
 USE pound;
 
-CREATE TABLE pesquisaMusica (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	musica VARCHAR(50)
-);
 CREATE TABLE pesquisaJogos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	jogo VARCHAR(50)
@@ -24,9 +20,7 @@ CREATE TABLE usuario (
 	nome VARCHAR(50),
 	email VARCHAR(50),
 	senha VARCHAR(50),
-	fk_musica INT,
     fk_jogo INT,
-	FOREIGN KEY (fk_musica) REFERENCES pesquisaMusica(id),
     FOREIGN KEY (fk_jogo) REFERENCES pesquisaJogos(id)
 );
 
@@ -38,11 +32,6 @@ CREATE TABLE aviso (
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
-insert into pesquisaMusica (musica) values ('Pop'),
-('Rock'),
-('Funk'),
-('K-pop'),
-('Samba');
 insert into pesquisaJogos (jogo) values ('FPS'),
 ('RPG'),
 ('Mundo aberto'),

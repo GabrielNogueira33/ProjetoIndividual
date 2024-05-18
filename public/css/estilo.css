@@ -9,7 +9,7 @@ body{
 }
 
 :root {
-  --tamanho-header: 20px;
+  --tamanho-header: 1.5px;
   --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
@@ -103,7 +103,7 @@ body{
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/imgs/guitarra.jpg');
+  background-image: url('../assets/imgs/banner\ jogos.gif');
   background-size: cover;
 }
 
@@ -328,7 +328,7 @@ body{
 input {
   margin-bottom: 10px;
   border: 2px solid #32b9cd;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   border-radius: 10px;
 }

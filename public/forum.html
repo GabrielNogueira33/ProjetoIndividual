@@ -100,7 +100,6 @@
     buttonCriarTitulo.addEventListener('click', () => {
         let tituloForum = document.getElementById('input_titulo').value
         if (tituloForum.trim() != '') {
-            // DÁ PRA USAR forEach e section ao inves desse inner
             insercaoTopico.innerHTML += `
             <div class="thread">
                 <h2>${tituloForum}</h2>

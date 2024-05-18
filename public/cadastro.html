@@ -63,12 +63,6 @@
                         <option value="#" selected>Selecione um estilo de jogo favorito</option>
                       </select>
                     </div>
-                    <div class="campo">
-                      <span>Estilo de música predileto:</span>
-                      <select name="musicas" id="listaMusicas_select">
-                        <option value="#" selected>Selecione um estilo musical favorito</option>
-                      </select>
-                    </div>
        <div class="campo">
            <span>E-mail:</span>
 <input id="email_input" type="text" placeholder="biel@gmail.com">
@@ -119,7 +113,6 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmar_senha_input.value;
-    var musicaVar = listaMusicas_select.value;
     var jogosVar = listaJogos_select.value;
 
     // validações dos campos
@@ -127,7 +120,6 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      musicaVar == "#" ||
       jogosVar == "#";
     let validacaoNome = nomeVar.length <= 1;
     let validacaoEmail = emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1;
@@ -150,7 +142,7 @@
 
         finalizarAguardar();
       return false;
-    } else if(!validacaoSenha){
+    } else if(validacaoSenha){
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "Erro : Preencha uma senha igual a confirmação ou com 6 caracteres para cima";
@@ -171,7 +163,6 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         jogosServer:jogosVar,
-        musicaServer: musicaVar,
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
@@ -205,13 +196,13 @@
   }
 
   function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
+    fetch("/jogo/listar", {
+      method: "GET"
     })
       .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+        resposta.json().then((jogos) => {
+          jogos.forEach((pesquisaJogos) => {
+            listaJogos_select.innerHTML += `<option value='${pesquisaJogos.id}'>${pesquisaJogos.jogo}</option>`;
           });
         });
       })
@@ -219,8 +210,7 @@
         console.log(`#ERRO: ${resposta}`);
       });
   }
-
   function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+     cardErro.style.display = "none";
+   }
 </script>
