@@ -2,91 +2,121 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> Pound | Página Inicial</title>
+  <title> Pound | Página Inicial</title>
 
-    <script src="./js/sessao.js"></script>
+  <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./imagens/pixel-art-logo.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="./css/estilo.css">
+  <link rel="icon" href="./imagens/pixel-art-logo.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo"><img class="logo" src="imagens/pixel-art-logo.png" alt=""> Pound</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="forum.html">Fórum</a>
-            <li>
-              <a href="objetivos.html">Objetivos</a>
-            </li>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        
-        </ul>
-      </div>
+  <div class="header">
+    <div class="container">
+      <h1 class="titulo"><img class="logo" src="imagens/pixel-art-logo.png" alt=""> Pound</h1>
+      <ul class="navbar">
+        <li class="agora">
+          <a href="#">Inicial</a>
+        </li>
+        <li>
+          <a href="forum.html">Fórum</a>
+        <li>
+          <a href="objetivos.html">Objetivos</a>
+        </li>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="login.html">Login</a>
+        </li>
+        <li>
+          <a href="cadastro.html">Cadastro</a>
+        </li>
+
+      </ul>
     </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p><h1 style="color:aqua"> Bem vindo ao Pound, Divirta-se!</h1></p>
-      </div>
+  </div>
+
+  <div class="banner">
+    <div class="container">
+      <p>
+      <h1 style="color:aqua"> Bem vindo ao Pound, Divirta-se!</h1>
+      </p>
     </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
+  </div>
+
+  <div class="social">
+    <div class="container">
+      <div class="boxes">
+        <div class="box">
+          <div class="cardInicio">
+            <img src="assets/imgs/logo objetivos.png ">
             <h4>Sobre o projeto</h4>
-            <p>o intuito deste projeto é fazer um fórum em que 
-              as pessoas venham se conhecer  e criar vínculos por suas paixões 
-              em comum tanto em games como em estilos músicais e também aprender umas com as outras!</h2></p>
+            <p>o intuito deste projeto é fazer um fórum em que
+              as pessoas venham se conhecer e criar vínculos por suas paixões
+              em comum tanto em games como em estilos músicais e também aprender umas com as outras!</h2>
+            </p>
           </div>
-          <div class="box">
+        </div>
+        <div class="box">
+          <div class="cardInicio">
             <img src="assets/imgs/lightbulb_color.png">
             <h4>Nome do site</h4>
             <p>
               O nome Pound vem de um trocadilho que eu fiz de misturar o P de Play
-              e ound de Sound, e do inglês Pound significa porrada ou a libra esterlina 😂🥊💷
-          </p>
+              e ound de Sound,<br> e do inglês Pound significa porrada ou a libra esterlina 😂🥊💷
+            </p>
           </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
+        </div>
+        <div class="box">
+          <div class="cardInicio">
+            <img src="assets/imgs/livro minecraft.png">
             <h4>Sobre mim</h4>
             <p>Desde que eu era pequeno eu mexia muito na internet,
               sempre que eu acessava a web demonstrava grande paixão por games
-              e ouvir música,<br> até hoje é minha paixão ouvir uma música 
+              e ouvir música,<br> até hoje é minha paixão ouvir uma música
               nova de rock que eu acho por ai e escutar elas repetidas vezes, ou
               achar um jogo online em que eu tenha um amigo virtual para jogar! </p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="box">
+    <span><img src="assets/imgs/doom guy transparent.gif">
+      Doom guy</span>
+
+  </div>
+  <article>
+    <button class="scrollTop" onclick="VoltarAoTopo()"> <!--botão para voltar ao header-->
+      <img src="assets/imgs/scroll-toppng.png" alt="">
+    </button>
+  </article>
+
+  <script>
+    window.addEventListener('scroll', function () { // ação fazer o botão de voltar ao header aparecer
+      let scroll = document.querySelector('.scrollTop')
+        scroll.classList.toggle('active', window.scrollY > 450)
+    })
+
+    function VoltarAoTopo() { // função para o botão voltar ao topo
+      window.scrollTo({
+        top: 0,
+          behavior: 'smooth'
+      })
+    }
+  </script>
+
+  <div class="footer">
     <div class="container">
-      
+      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+      <span class="version">v1.0.0</span>
     </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
-    </div>
-  </body>
+  </div>
+</body>
 
 </html>
