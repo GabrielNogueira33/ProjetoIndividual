@@ -136,9 +136,9 @@ body{
   
 }
 
-.box img {
+.cardInicio img {
  
-  width: 240px;
+  width: 120px;
 }
 
 /* .social .container .boxes {
@@ -250,7 +250,7 @@ body{
   justify-content: space-evenly;
   color: rgb(248, 146, 146);
   flex-direction: column;
-  height: 45vh;
+  height: 75vh;
   padding: 20px 0;
   margin: 5%;
 }
