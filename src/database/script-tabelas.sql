@@ -15,6 +15,12 @@ CREATE TABLE pesquisaJogos (
 	jogo VARCHAR(50)
 );
 
+insert into pesquisaJogos (jogo) values ('FPS'),
+('RPG'),
+('Mundo aberto'),
+('Sobrevivência'),
+('Outros/diversos');
+
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
@@ -24,19 +30,41 @@ CREATE TABLE usuario (
     FOREIGN KEY (fk_jogo) REFERENCES pesquisaJogos(id)
 );
 
-CREATE TABLE aviso (
+CREATE TABLE anonimo(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+    nome VARCHAR(50)
 );
 
-insert into pesquisaJogos (jogo) values ('FPS'),
-('RPG'),
-('Mundo aberto'),
-('Sobrevivência'),
-('Terror');
+/*create table perfil (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	fk_usuario INT,
+	fk_jogo INT,
+	FOREIGN KEY (fk_jogo) REFERENCES pesquisaJogos(id),
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);*/
+
+CREATE TABLE resposta(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	texto VARCHAR(500) not null,
+    dataPostada datetime, -- colocar no insert do node como NOW() para ele postar a data que a mensagem foi postada
+    fk_anonimo INT,
+    fk_usuario INT,
+    FOREIGN KEY (fk_anonimo) REFERENCES anonimo(id),
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+
+CREATE TABLE forum (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	titulo VARCHAR(100) not null,
+-- descricao VARCHAR(150), se conseguir colocar descrição nos fóruns, descomenta essa linha
+	fk_resposta INT,
+    fk_anonimo INT,
+	fk_usuario INT,
+    FOREIGN KEY (fk_anonimo) REFERENCES anonimo(id),
+	FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
+    FOREIGN KEY (fk_resposta) REFERENCES resposta(id)
+);
+
 
 select * from usuario;
 select * from PesquisaJogos;
