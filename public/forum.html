@@ -53,7 +53,7 @@
                 Insira o titulo:<input id="input_titulo" />
                 <button id="button_criarTitulo">Criar </button>
             </div>
-            <div class="thread">
+            <!-- <div class="thread">
                 <h2>Como jogar CS 2 ?</h2> <button>
                     Mostrar respostas
                 </button>
@@ -65,7 +65,7 @@
                         <input type="submit" name="acao" value="Enviar!">
                     </form>
                 </div>
-            </div><!--thread-->
+            </div> teste de forum novo e ele não consta no JS-->
             <div id="insercao_topico"></div>
         </div>
     </div>
@@ -93,11 +93,11 @@
     let buttonCriarTitulo = document.getElementById('button_criarTitulo');
     let insercaoTopico = document.getElementById('insercao_topico');
 
-    // Load stored topics and responses on page load
+    
     window.onload = () => {
         if (localStorage.getItem('forumData')) {
             insercaoTopico.innerHTML = localStorage.getItem('forumData');
-            anexar(); // Reattach event listeners
+            anexar(); 
         }
     };
 
@@ -123,14 +123,16 @@
             criacaoForum.style.display = 'none';
             document.getElementById('input_titulo').value = '';
             saveTolocalStorage();
-            anexar(); // Reattach event listeners
+            anexar(); 
         } else {
             alert('O título não pode estar vázio!');
         }
     });
 
     function saveTolocalStorage() {
+        localStorage.setItem('conteudo',p_criado.innerHTML);
         localStorage.setItem('forumData', insercaoTopico.innerHTML);
+        
     }
 
     function anexar() {
@@ -156,9 +158,9 @@
             e.preventDefault();
             let conteudo = forms[i].querySelector('textarea').value;
             if (conteudo.trim() != '') {
-                forms[i].insertAdjacentHTML('beforebegin', `<p> ${conteudo}<p>`);
+                forms[i].insertAdjacentHTML('beforebegin', `<p id="p_criado"> ${conteudo}</p>`);
                 forms[i].querySelector('textarea').value = '';
-                saveToLocalStorage();
+                saveTolocalStorage();
             }
         });
     }
