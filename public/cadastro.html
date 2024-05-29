@@ -44,8 +44,8 @@
 
   <div class="login">
     <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
+      <div class="cardSucesso" id="cardSucesso">
+        <span id="mensagem_sucesso"></span>
       </div>
     </div>
     <div class="container">
@@ -81,7 +81,9 @@
            
        </div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
-       
+          <CENTER>
+       <p><a href="forum.html">SOU ANONIMO!</a></p>
+      </CENTER>
         <div id="div_aguardar" class="loading-div">
           <img src="./assets/pac-man-transparente.gif" id="loading-gif" />
         </div>
@@ -130,9 +132,7 @@
     let validacaoSenha = senhaVar.length <= 6 || senhaVar !== confirmacaoSenhaVar;
 
     if (validacaoCamposVazios) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Erro: Preencha todos os campos";
+      alert("Erro: Preencha todos os campos");
 
         finalizarAguardar();
       return false;
@@ -140,16 +140,11 @@
      else if (validacaoNome ||
     validacaoEmail
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Erro : Preencha informações validas";
-
+      alert("Erro : Preencha informações validas");
         finalizarAguardar();
       return false;
     } else if(validacaoSenha){
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Erro : Preencha uma senha igual a confirmação ou com 6 caracteres para cima";
+      alert("Erro : Preencha uma senha igual a confirmação ou com 6 caracteres para cima");
         finalizarAguardar();
       return false;
     }
@@ -176,9 +171,9 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+          cardSucesso.style.display = "block";
 
-          mensagem_erro.innerHTML =
+          mensagem_sucesso.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
@@ -215,6 +210,6 @@
       });
   }
   function sumirMensagem() {
-     cardErro.style.display = "none";
+     cardSucesso.style.display = "none";
    }
 </script>

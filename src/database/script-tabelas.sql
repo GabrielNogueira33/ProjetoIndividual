@@ -43,28 +43,5 @@ CREATE TABLE anonimo(
     FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );*/
 
-CREATE TABLE resposta(
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	texto VARCHAR(500) not null,
-    dataPostada datetime, -- colocar no insert do node como NOW() para ele postar a data que a mensagem foi postada
-    fk_anonimo INT,
-    fk_usuario INT,
-    FOREIGN KEY (fk_anonimo) REFERENCES anonimo(id),
-    FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-);
-
-CREATE TABLE forum (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100) not null,
--- descricao VARCHAR(150), se conseguir colocar descrição nos fóruns, descomenta essa linha
-	fk_resposta INT,
-    fk_anonimo INT,
-	fk_usuario INT,
-    FOREIGN KEY (fk_anonimo) REFERENCES anonimo(id),
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
-    FOREIGN KEY (fk_resposta) REFERENCES resposta(id)
-);
-
-
-select * from usuario;
+select * from pound.usuario;
 select * from PesquisaJogos;

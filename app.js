@@ -19,9 +19,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var forunsRouter = require("./src/routes/foruns");
 var medidasRouter = require("./src/routes/medidas");
-var perfisRouter = require("./src/routes/perfis");
 var jogoRouter = require("./src/routes/jogo");
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +31,6 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/foruns", forunsRouter);
 app.use("/medidas", medidasRouter);
-app.use("/perfis", perfisRouter);
 app.use("/jogo", jogoRouter);
 
 

@@ -293,6 +293,10 @@ body{
   margin: 0;
 }
 
+.formulario a{
+  color:white
+}
+
 .formulario select {
   border: 2px solid #24d536;
   background-color: white;
@@ -346,21 +350,21 @@ body{
   justify-content: flex-end;
 }
 
-.card_erro {
+.cardSucesso {
   display: none;
-  background-color: #fff;
+  background-color: whitesmoke;
   color: black;
   width: 230px;
   position: fixed;
   border-radius: 4px;
-  border: #e6005a 3px solid;
+  border: #0bf364 3px solid;
   padding: 10px;
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
-  font-weight: 500;
-  font-size: 20px;
+.cardSucesso #mensagem_sucesso{
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .formulario .tipo_campo {

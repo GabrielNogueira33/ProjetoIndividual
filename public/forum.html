@@ -46,7 +46,7 @@
     <div class="forum">
         <div class="container">
             <h2>Fórum</h2>
-            <button id="button_topico" onclick="criarTopico()" style="height: 20px; width: 200px;">
+            <button id="button_topico" style="height: 20px; width: 200px;">
                 Criar tópico
             </button>
             <div id="criacao_forum" style="display:none"><br>
@@ -86,60 +86,81 @@
 </body>
 </html>
 
+
 <script>
-
-
     let criacaoForum = document.getElementById('criacao_forum');
     let buttonCriarTopico = document.getElementById('button_topico');
     let buttonCriarTitulo = document.getElementById('button_criarTitulo');
-    let insercaoTopico = document.getElementById('insercao_topico')
+    let insercaoTopico = document.getElementById('insercao_topico');
+
+    // Load stored topics and responses on page load
+    window.onload = () => {
+        if (localStorage.getItem('forumData')) {
+            insercaoTopico.innerHTML = localStorage.getItem('forumData');
+            anexar(); // Reattach event listeners
+        }
+    };
 
     buttonCriarTopico.addEventListener('click', () => {
         criacaoForum.style.display = 'block';
     });
 
     buttonCriarTitulo.addEventListener('click', () => {
-        let tituloForum = document.getElementById('input_titulo').value
+        let tituloForum = document.getElementById('input_titulo').value;
         if (tituloForum.trim() != '') {
-            insercaoTopico.innerHTML += `
-            <div class="thread">
-                <h2>${tituloForum}</h2>
-                <button>Mostrar respostas</button>
-                <div style="display:none;" class="respostas">
-                    <form>
-                        <textarea></textarea>
-                        <input type="submit" name="acao" value="Enviar!">
-                    </form>
-                </div>
-            </div>`;
+            let newThread = `
+                <div class="thread">
+                    <h2>${tituloForum}</h2>
+                    <button>Mostrar respostas</button>
+                    <div style="display:none;" class="respostas">
+                        <form>
+                            <textarea></textarea>
+                            <input type="submit" name="acao" value="Enviar!">
+                        </form>
+                    </div>
+                </div>`;
+            insercaoTopico.innerHTML += newThread;
             criacaoForum.style.display = 'none';
             document.getElementById('input_titulo').value = '';
-            anexar();
+            saveTolocalStorage();
+            anexar(); // Reattach event listeners
+        } else {
+            alert('O título não pode estar vázio!');
         }
-        else {
-            alert('O título não pode estar vázio!')
-        }
-    })
-    function anexar() {
-        let buttonsResposta = document.querySelectorAll('.thread button');
+    });
 
-        for (let i = 0; i < buttonsResposta.length; i++) {
-            buttonsResposta[i].addEventListener('click', () => {
-                let respostas = document.querySelectorAll('.respostas');
-                respostas[i].style.display = "block"
-            })
-
-        }
-
-        let forms = document.querySelectorAll('form');
-
-        for (let i = 0; i < forms.length; i++) {
-            forms[i].addEventListener('submit', (e) => {
-                e.preventDefault();
-                let conteudo = document.querySelectorAll('textarea')[i];
-                forms[i].insertAdjacentHTML('beforebegin', `<p> ${conteudo.value}<p>`)
-                conteudo.value = ``
-            })
-        }
+    function saveTolocalStorage() {
+        localStorage.setItem('forumData', insercaoTopico.innerHTML);
     }
+
+    function anexar() {
+    let buttonsResposta = document.querySelectorAll('.thread button');
+    let respostas = document.querySelectorAll('.respostas');
+
+    for (let i = 0; i < buttonsResposta.length; i++) {
+        buttonsResposta[i].addEventListener('click', () => {
+            if (respostas[i].style.display === 'block') {
+                respostas[i].style.display = 'none';
+                buttonsResposta[i].textContent = 'Mostrar respostas';
+            } else {
+                respostas[i].style.display = 'block';
+                buttonsResposta[i].textContent = 'Ocultar respostas';
+            }
+        });
+    }
+
+    let forms = document.querySelectorAll('form');
+
+    for (let i = 0; i < forms.length; i++) {
+        forms[i].addEventListener('submit', (e) => {
+            e.preventDefault();
+            let conteudo = forms[i].querySelector('textarea').value;
+            if (conteudo.trim() != '') {
+                forms[i].insertAdjacentHTML('beforebegin', `<p> ${conteudo}<p>`);
+                forms[i].querySelector('textarea').value = '';
+                saveToLocalStorage();
+            }
+        });
+    }
+}
 </script>
