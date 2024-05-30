@@ -22,7 +22,21 @@ function cadastrar(nome, email, senha, jogoId) {
     return database.executar(instrucaoSql);
 }
 
+function listar() {
+    var instrucaoSql = `SELECT u.nome FROM usuario u`;
+  
+    return database.executar(instrucaoSql);
+  }
+
+function chamarUsuarioPorId(usuarioId){
+    var instrucaoSql = `SELECT u.nome FROM usuario u WHERE u.id = ${usuarioId}`;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listar,
+    chamarUsuarioPorId
 };

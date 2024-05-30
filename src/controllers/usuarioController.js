@@ -1,11 +1,25 @@
 var usuarioModel = require("../models/usuarioModel");
 
+
+function listar(req, res) {
+    usuarioModel.listar().then((resultado) => {
+      res.status(200).json(resultado);
+    });
+  }
+
+  function chamarUsuarioPorId(req, res){
+    var usuarioId = req.params.id;
+
+    usuarioModel.chamarUsuarioPorId(usuarioId).then((resultado) => {
+        res.status(200).json(resultado);
+      });
+} 
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     
     
-
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
@@ -18,7 +32,7 @@ function autenticar(req, res) {
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                        res.redirect('/index.html');
+                        res.redirect('/index.html'); // para mandar em um perfil logado comece mudando por aqui 
                     } else 
                     if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -77,5 +91,7 @@ function cadastrar(req, res) {
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listar,
+    chamarUsuarioPorId
 }

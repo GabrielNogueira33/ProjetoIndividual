@@ -36,7 +36,7 @@
                 <li>
                     <a href="./cadastro.html">Cadastro</a>
                 </li>
-
+                <p id="p_nomeUsuario"></p>
             </ul>
         </div>
     </div>
@@ -73,17 +73,20 @@
 
     <div class="footer">
         <div class="container">
-          <h4>Feito com amor por aluno &heartsuit; SPTech &copy; 2024<br>
-            gabriel.ncarvalho@sptech.school<br>
-         <p> <a href="https://www.linkedin.com/in/gabriel-nogueira-carvalho-427563264/">
-            <img src="assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
-          <a href="https://github.com/GabrielNogueira33">
-            <img src="assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
-          </a> </p></h4> 
-            
-        </div> 
-      </div>
+            <h4>Feito com amor por aluno &heartsuit; SPTech &copy; 2024<br>
+                gabriel.ncarvalho@sptech.school<br>
+                <p> <a href="https://www.linkedin.com/in/gabriel-nogueira-carvalho-427563264/">
+                        <img src="assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
+                    <a href="https://github.com/GabrielNogueira33">
+                        <img src="assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
+                    </a>
+                </p>
+            </h4>
+
+        </div>
+    </div>
 </body>
+
 </html>
 
 
@@ -93,11 +96,12 @@
     let buttonCriarTitulo = document.getElementById('button_criarTitulo');
     let insercaoTopico = document.getElementById('insercao_topico');
 
-    
+    let usuarioId = 1;
+
     window.onload = () => {
         if (localStorage.getItem('forumData')) {
             insercaoTopico.innerHTML = localStorage.getItem('forumData');
-            anexar(); 
+            anexar();
         }
     };
 
@@ -108,7 +112,7 @@
     buttonCriarTitulo.addEventListener('click', () => {
         let tituloForum = document.getElementById('input_titulo').value;
         if (tituloForum.trim() != '') {
-            let newThread = `
+            let novaThread = `
                 <div class="thread">
                     <h2>${tituloForum}</h2>
                     <button>Mostrar respostas</button>
@@ -119,50 +123,101 @@
                         </form>
                     </div>
                 </div>`;
-            insercaoTopico.innerHTML += newThread;
+            insercaoTopico.innerHTML += novaThread;
             criacaoForum.style.display = 'none';
             document.getElementById('input_titulo').value = '';
-            saveTolocalStorage();
-            anexar(); 
+            GuardarLocalStorage();
+            anexar();
         } else {
             alert('O título não pode estar vázio!');
         }
     });
 
-    function saveTolocalStorage() {
-        localStorage.setItem('conteudo',p_criado.innerHTML);
+    function GuardarLocalStorage() {
+        localStorage.setItem('conteudo', p_criado.innerHTML);
         localStorage.setItem('forumData', insercaoTopico.innerHTML);
-        
+
+    }
+
+    function GuardarSessionStorage(){
+        sessionStorage.setItem()
     }
 
     function anexar() {
-    let buttonsResposta = document.querySelectorAll('.thread button');
-    let respostas = document.querySelectorAll('.respostas');
+        let buttonsResposta = document.querySelectorAll('.thread button');
+        let respostas = document.querySelectorAll('.respostas');
 
-    for (let i = 0; i < buttonsResposta.length; i++) {
-        buttonsResposta[i].addEventListener('click', () => {
-            if (respostas[i].style.display === 'block') {
-                respostas[i].style.display = 'none';
-                buttonsResposta[i].textContent = 'Mostrar respostas';
-            } else {
-                respostas[i].style.display = 'block';
-                buttonsResposta[i].textContent = 'Ocultar respostas';
-            }
-        });
+        for (let i = 0; i < buttonsResposta.length; i++) {
+            buttonsResposta[i].addEventListener('click', () => {
+                if (respostas[i].style.display === 'block') {
+                    respostas[i].style.display = 'none';
+                    buttonsResposta[i].textContent = 'Mostrar respostas';
+                } else {
+                    respostas[i].style.display = 'block';
+                    buttonsResposta[i].textContent = 'Ocultar respostas';
+                }
+            });
+        }
+
+        let forms = document.querySelectorAll('form');
+
+        for (let i = 0; i < forms.length; i++) {
+            forms[i].addEventListener('submit', (e) => {
+                e.preventDefault();
+                let conteudo = forms[i].querySelector('textarea').value;
+                if (conteudo.trim() != '') {
+                    fetch("/usuarios/chamarUsuarioPorId", {
+                        method: "GET"
+                    })
+                    .then(function (resposta) {
+                        resposta.json().then((usuarios) => {
+                            usuarios.forEach((usuario) => {
+                            forms[i].insertAdjacentHTML('beforebegin', `<p id="p_criado">${usuario.nome} : ${conteudo}</p>`);
+                            forms[i].querySelector('textarea').value = '';
+                            GuardarLocalStorage();
+                            });
+                        });
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
+                    
+                }
+            });
+        }
     }
 
-    let forms = document.querySelectorAll('form');
-
-    for (let i = 0; i < forms.length; i++) {
-        forms[i].addEventListener('submit', (e) => {
-            e.preventDefault();
-            let conteudo = forms[i].querySelector('textarea').value;
-            if (conteudo.trim() != '') {
-                forms[i].insertAdjacentHTML('beforebegin', `<p id="p_criado"> ${conteudo}</p>`);
-                forms[i].querySelector('textarea').value = '';
-                saveTolocalStorage();
-            }
-        });
+    function listarUsuario() {
+        fetch("/usuarios/listar", {
+            method: "GET"
+        })
+            .then(function (resposta) {
+                resposta.json().then((usuarios) => {
+                    usuarios.forEach((usuario) => {
+                        p_nomeUsuario.innerHTML += `Olá ${usuario.nome}`;
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
     }
-}
+
+    // function salvarVariavelId(){
+    //     fetch("/usuarios/listar", {
+    //         method: "GET"
+    //     })
+    //         .then(function (resposta) {
+    //             resposta.json().then((usuarios) => {
+    //                 usuarios.forEach((usuario) => {
+    //                     usuarioId = usuario.id;
+    //                 });
+    //             });
+    //         })
+    //         .catch(function (resposta) {
+    //             console.log(`#ERRO: ${resposta}`);
+    //         });
+    // }
+    
+
 </script>

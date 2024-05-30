@@ -12,4 +12,13 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/listar", function (req, res) {
+    usuarioController.listar(req, res);
+  });
+
+router.get("/chamarUsuarioPorId/:id", function (req, res) {
+    usuarioController.chamarUsuarioPorId(req, res);
+  });
+  
+
 module.exports = router;

@@ -36,7 +36,7 @@
         <li>
           <a href="cadastro.html">Cadastro</a>
         </li>
-
+        <p id="p_nomeUsuario"></p>
       </ul>
     </div>
   </div>
@@ -116,6 +116,22 @@
           behavior: 'smooth'
       })
     }
+
+    function listarUsuario() {
+    fetch("/usuarios/listar", {
+      method: "GET"
+    })
+      .then(function (resposta) {
+        resposta.json().then((usuarios) => {
+          usuarios.forEach((usuario) => {
+            p_nomeUsuario.innerHTML += `Olá ${usuario.nome}`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
   </script>
 
   <div class="footer">
