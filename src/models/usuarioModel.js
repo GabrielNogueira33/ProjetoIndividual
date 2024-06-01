@@ -29,14 +29,22 @@ function listar() {
   }
 
 function chamarUsuarioPorId(usuarioId){
-    var instrucaoSql = `SELECT u.nome FROM usuario u WHERE u.id = ${usuarioId}`;
+    var instrucaoSql = `SELECT u.nome FROM usuario u WHERE u.id = '${usuarioId}'`;
 
     return database.executar(instrucaoSql);
 }
+
+function chamarUsuarioPorEmail(email){
+    var instrucaoSql = `SELECT nome FROM usuario WHERE email = '${email}'`;
+
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     autenticar,
     cadastrar,
     listar,
-    chamarUsuarioPorId
+    chamarUsuarioPorId,
+    chamarUsuarioPorEmail
 };

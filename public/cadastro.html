@@ -25,9 +25,6 @@
           <a href="index.html">Inicial</a>
         </li>
         <li>
-          <a href="forum.html">Fórum</a>
-        </li>
-        <li>
           <a href="objetivos.html">Objetivos</a>
         </li>
         <li>|</li>
@@ -210,23 +207,6 @@
         console.log(`#ERRO: ${resposta}`);
       });
     }
-
-      function listarUsuario() {
-    fetch("/usuarios/listar", {
-      method: "GET"
-    })
-      .then(function (resposta) {
-        resposta.json().then((usuarios) => {
-          jogos.forEach((usuario) => {
-            p_nomeUsuario.innerHTML += `Olá ${usuario.nome}`;
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-  
 
   function sumirMensagem() {
      cardSucesso.style.display = "none";

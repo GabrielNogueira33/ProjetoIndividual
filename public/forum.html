@@ -30,12 +30,6 @@
                     <a href="./objetivos.html">Objetivos</a>
                 </li>
                 <li>|</li>
-                <li>
-                    <a href="./login.html">Login</a>
-                </li>
-                <li>
-                    <a href="./cadastro.html">Cadastro</a>
-                </li>
                 <p id="p_nomeUsuario"></p>
             </ul>
         </div>
@@ -96,8 +90,6 @@
     let buttonCriarTitulo = document.getElementById('button_criarTitulo');
     let insercaoTopico = document.getElementById('insercao_topico');
 
-    let usuarioId = 1;
-
     window.onload = () => {
         if (localStorage.getItem('forumData')) {
             insercaoTopico.innerHTML = localStorage.getItem('forumData');
@@ -134,13 +126,8 @@
     });
 
     function GuardarLocalStorage() {
-        localStorage.setItem('conteudo', p_criado.innerHTML);
         localStorage.setItem('forumData', insercaoTopico.innerHTML);
-
-    }
-
-    function GuardarSessionStorage(){
-        sessionStorage.setItem()
+        
     }
 
     function anexar() {
@@ -166,13 +153,15 @@
                 e.preventDefault();
                 let conteudo = forms[i].querySelector('textarea').value;
                 if (conteudo.trim() != '') {
-                    fetch("/usuarios/chamarUsuarioPorId", {
+                    fetch(`/usuarios/chamarUsuarioPorId/${sessionStorage.getItem("ID_USUARIO")}`, { //
                         method: "GET"
                     })
                     .then(function (resposta) {
                         resposta.json().then((usuarios) => {
                             usuarios.forEach((usuario) => {
-                            forms[i].insertAdjacentHTML('beforebegin', `<p id="p_criado">${usuario.nome} : ${conteudo}</p>`);
+                                let conteudoSalvo = `<p>${usuario.nome} : ${conteudo}</p>`
+                            forms[i].insertAdjacentHTML('beforebegin', conteudoSalvo);
+                            localStorage.setItem('conteudo', conteudoSalvo);
                             forms[i].querySelector('textarea').value = '';
                             GuardarLocalStorage();
                             });
@@ -186,9 +175,7 @@
             });
         }
     }
-
-    function listarUsuario() {
-        fetch("/usuarios/listar", {
+        fetch(`/usuarios/chamarUsuarioPorId/${sessionStorage.getItem("ID_USUARIO")}`, { //
             method: "GET"
         })
             .then(function (resposta) {
@@ -201,7 +188,7 @@
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
-    }
+    
 
     // function salvarVariavelId(){
     //     fetch("/usuarios/listar", {

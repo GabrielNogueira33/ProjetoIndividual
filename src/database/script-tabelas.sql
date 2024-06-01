@@ -10,18 +10,18 @@ CREATE DATABASE pound;
 
 USE pound;
 
-CREATE TABLE pesquisaJogos (
+CREATE TABLE pound.pesquisaJogos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	jogo VARCHAR(50)
 );
 
-insert into pesquisaJogos (jogo) values ('FPS'),
+insert into pound.pesquisaJogos (jogo) values ('FPS'),
 ('RPG'),
 ('Mundo aberto'),
 ('Sobrevivência'),
 ('Outros/diversos');
 
-CREATE TABLE usuario (
+CREATE TABLE pound.usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
 	email VARCHAR(50),
@@ -30,18 +30,18 @@ CREATE TABLE usuario (
     FOREIGN KEY (fk_jogo) REFERENCES pesquisaJogos(id)
 );
 
-CREATE TABLE anonimo(
+CREATE TABLE pound.anonimo(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50)
 );
 
-/*create table perfil (
-	id INT PRIMARY KEY AUTO_INCREMENT,
+create table pound.perfil (
+	id INT PRIMARY KEY,
 	fk_usuario INT,
 	fk_jogo INT,
 	FOREIGN KEY (fk_jogo) REFERENCES pesquisaJogos(id),
     FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-);*/
+);
 
 select * from pound.usuario;
-select * from PesquisaJogos;
+select * from pound.PesquisaJogos;

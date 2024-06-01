@@ -19,6 +19,11 @@ router.get("/listar", function (req, res) {
 router.get("/chamarUsuarioPorId/:id", function (req, res) {
     usuarioController.chamarUsuarioPorId(req, res);
   });
+
+  router.get("/chamarUsuarioPorEmail/:email", function (req, res) {
+    usuarioController.chamarUsuarioPorEmail(req, res);
+  });
+
   
 
 module.exports = router;

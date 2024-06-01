@@ -27,9 +27,6 @@
                     <a href="index.html">Inicial</a>
                 </li>
                 <li>
-                    <a href="forum.html">Fórum</a>
-                </li>
-                <li>
                     <a href="objetivos.html">Objetivos</a>
                   </li>
                 <li>|</li>
@@ -103,17 +100,13 @@
         let validarCamposVazios = emailVar == "" || senhaVar == "";
 
         if (validarCamposVazios) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Erro: Preencha os campos necessários!";
+            alert('ERRO: Por favor preencher os campos em branco')
             finalizarAguardar();
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
+        
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -126,7 +119,7 @@
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-
+          
             if (resposta.ok) {
                 console.log(resposta);
 
@@ -136,7 +129,7 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    
+                    // console.log("ID: ", ID_USUARIO)
 
                     setTimeout(function () {
                         window.location = "forum.html";
@@ -150,7 +143,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    finalizarAguardar();
                 });
             }
 
@@ -159,10 +152,6 @@
         })
 
         return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
 
 </script>
