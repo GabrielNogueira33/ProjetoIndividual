@@ -31,7 +31,7 @@ CREATE TABLE pound.usuario (
 );
 
 CREATE TABLE pound.anonimo(
-	id INT PRIMARY KEY AUTO_INCREMENT,
+	id INT PRIMARY KEY,
     nome VARCHAR(50)
 );
 
@@ -45,3 +45,4 @@ create table pound.perfil (
 
 select * from pound.usuario;
 select * from pound.PesquisaJogos;
+select * from pound.anonimo;

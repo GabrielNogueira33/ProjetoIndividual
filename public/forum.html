@@ -47,19 +47,6 @@
                 Insira o titulo:<input id="input_titulo" />
                 <button id="button_criarTitulo">Criar </button>
             </div>
-            <!-- <div class="thread">
-                <h2>Como jogar CS 2 ?</h2> <button>
-                    Mostrar respostas
-                </button>
-                <div style="display:none;" class="respostas">
-                    <p>corre, avista inimigo, para e atira!</p>
-                    <hr>
-                    <form>
-                        <textarea></textarea>
-                        <input type="submit" name="acao" value="Enviar!">
-                    </form>
-                </div>
-            </div> teste de forum novo e ele não consta no JS-->
             <div id="insercao_topico"></div>
         </div>
     </div>
@@ -85,6 +72,10 @@
 
 
 <script>
+
+
+
+
     let criacaoForum = document.getElementById('criacao_forum');
     let buttonCriarTopico = document.getElementById('button_topico');
     let buttonCriarTitulo = document.getElementById('button_criarTitulo');
@@ -110,7 +101,7 @@
                     <button>Mostrar respostas</button>
                     <div style="display:none;" class="respostas">
                         <form>
-                            <textarea></textarea>
+                            <textarea maxlength="150"></textarea>
                             <input type="submit" name="acao" value="Enviar!">
                         </form>
                     </div>
@@ -127,12 +118,13 @@
 
     function GuardarLocalStorage() {
         localStorage.setItem('forumData', insercaoTopico.innerHTML);
-        
+
     }
 
     function anexar() {
         let buttonsResposta = document.querySelectorAll('.thread button');
         let respostas = document.querySelectorAll('.respostas');
+        let forms = document.querySelectorAll('form');
 
         for (let i = 0; i < buttonsResposta.length; i++) {
             buttonsResposta[i].addEventListener('click', () => {
@@ -146,65 +138,52 @@
             });
         }
 
-        let forms = document.querySelectorAll('form');
 
-        for (let i = 0; i < forms.length; i++) {
-            forms[i].addEventListener('submit', (e) => {
-                e.preventDefault();
-                let conteudo = forms[i].querySelector('textarea').value;
-                if (conteudo.trim() != '') {
-                    fetch(`/usuarios/chamarUsuarioPorId/${sessionStorage.getItem("ID_USUARIO")}`, { //
-                        method: "GET"
-                    })
-                    .then(function (resposta) {
-                        resposta.json().then((usuarios) => {
-                            usuarios.forEach((usuario) => {
-                                let conteudoSalvo = `<p>${usuario.nome} : ${conteudo}</p>`
-                            forms[i].insertAdjacentHTML('beforebegin', conteudoSalvo);
-                            localStorage.setItem('conteudo', conteudoSalvo);
-                            forms[i].querySelector('textarea').value = '';
-                            GuardarLocalStorage();
+
+
+        if (sessionStorage.EMAIL_USUARIO == undefined) {
+            p_nomeUsuario.innerHTML += `Olá ${sessionStorage.NOME_USUARIO}`;
+            for (let i = 0; i < forms.length; i++) {
+                forms[i].addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    let conteudo = forms[i].querySelector('textarea').value;
+                    if (conteudo.trim() != '') {
+                        let conteudoSalvo = `<p>${sessionStorage.NOME_USUARIO} : ${conteudo}</p>`;
+                        forms[i].insertAdjacentHTML('beforebegin', conteudoSalvo);
+                        localStorage.setItem('conteudo', conteudoSalvo);
+                        forms[i].querySelector('textarea').value = '';
+                        GuardarLocalStorage();
+                    }
+                });
+            }
+        } else {
+            for (let i = 0; i < forms.length; i++) {
+                forms[i].addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    let conteudo = forms[i].querySelector('textarea').value;
+                    if (conteudo.trim() != '') {
+                        fetch(`/usuarios/chamarUsuarioPorId/${sessionStorage.getItem("ID_USUARIO")}`, {
+                            method: "GET"
+                        })
+                            .then(function (resposta) {
+                                return resposta.json();
+                            })
+                            .then((usuarios) => {
+                                usuarios.forEach((usuario) => {
+                                        p_nomeUsuario.innerHTML = `Olá ${usuario.nome}`
+                                    let conteudoSalvo = `<p>${usuario.nome} : ${conteudo}</p>`;
+                                    forms[i].insertAdjacentHTML('beforebegin', conteudoSalvo);
+                                    localStorage.setItem('conteudo', conteudoSalvo);
+                                    forms[i].querySelector('textarea').value = '';
+                                    GuardarLocalStorage();
+                                });
+                            })
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
                             });
-                        });
-                    })
-                    .catch(function (resposta) {
-                        console.log(`#ERRO: ${resposta}`);
-                    });
-                    
-                }
-            });
+                    }
+                });
+            }
         }
     }
-        fetch(`/usuarios/chamarUsuarioPorId/${sessionStorage.getItem("ID_USUARIO")}`, { //
-            method: "GET"
-        })
-            .then(function (resposta) {
-                resposta.json().then((usuarios) => {
-                    usuarios.forEach((usuario) => {
-                        p_nomeUsuario.innerHTML += `Olá ${usuario.nome}`;
-                    });
-                });
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-    
-
-    // function salvarVariavelId(){
-    //     fetch("/usuarios/listar", {
-    //         method: "GET"
-    //     })
-    //         .then(function (resposta) {
-    //             resposta.json().then((usuarios) => {
-    //                 usuarios.forEach((usuario) => {
-    //                     usuarioId = usuario.id;
-    //                 });
-    //             });
-    //         })
-    //         .catch(function (resposta) {
-    //             console.log(`#ERRO: ${resposta}`);
-    //         });
-    // }
-    
-
 </script>

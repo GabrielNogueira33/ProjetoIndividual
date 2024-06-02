@@ -10,6 +10,7 @@
 
   <script src="./js/sessao.js"></script>
 
+  <script src="https://kit.fontawesome.com/7b2f94cf5c.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./css/estilo.css" />
   <link rel="icon" href="./imagens/pixel-art-logo.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -55,59 +56,63 @@
                          Assim que inserir vá para o script abaixo.
                      -->
 
-                     <div class="campo">
-                      <span>Estilo de jogo predileto:</span>
-                      <select name="jogos" id="listaJogos_select">
-                        <option value="#" selected>Selecione um estilo de jogo favorito</option>
-                      </select>
-                    </div>
-       <div class="campo">
-           <span>E-mail:</span>
-<input id="email_input" type="text" placeholder="biel@gmail.com">
-       </div>
-       <div class="campo">
-           <span>Seu nome:</span>
-           <input id="nickname_input" type="text" placeholder="nickname">                
-       </div>
-       <div class="campo">
-           <span>Senha:</span>
-           <input id="senha_input" type="password" placeholder="******">                
-       </div>
-       <div class="campo">
-           <span>Confirme a Senha:</span>
-           <input id="confirmar_senha_input" type="password" placeholder="******">
-           
-       </div>
+          <div class="campo">
+            <i class="fa-solid fa-star"></i> <span>Estilo de jogo predileto:</span>
+            <select name="jogos" id="listaJogos_select">
+              <option value="#" selected>Selecione um estilo de jogo favorito</option>
+            </select>
+          </div>
+          <div class="campo">
+            <i class="fa-solid fa-user-plus"></i> <span>E-mail:</span>
+            <input id="email_input" type="text" placeholder="biel@gmail.com" >
+          </div>
+          <div class="campo">
+            <i class="fa-solid fa-user-plus"></i><span>Seu nome:</span>
+            <input id="nickname_input" type="text" placeholder="nickname">
+          </div>
+          <div class="campo">
+            <i class="fa-solid fa-key"></i><span>Senha:</span>
+            <input id="senha_input" type="password" placeholder="******">
+          </div>
+          <div class="campo">
+            <i class="fa-solid fa-key"></i><span>Confirme a Senha:</span>
+            <input id="confirmar_senha_input" type="password" placeholder="******">
+
+          </div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
           <CENTER>
-       <p><a href="forum.html">SOU ANONIMO!</a></p>
-      </CENTER>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/pac-man-transparente.gif" id="loading-gif" />
-        </div>
+             <p><a href="forum.html" onclick="souAnonimo()">SOU ANONIMO!</a></p>
+           
+          </CENTER>
+          <div id="div_aguardar" class="loading-div">
+            <img src="./assets/pac-man-transparente.gif" id="loading-gif" />
+          </div>
 
-        <div id="div_erros_login"></div>
+          <div id="div_erros_login"></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &heartsuit; SPTech &copy; 2024<br>
-        gabriel.ncarvalho@sptech.school<br>
-     <p> <a href="https://www.linkedin.com/in/gabriel-nogueira-carvalho-427563264/">
-        <img src="assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
-      <a href="https://github.com/GabrielNogueira33">
-        <img src="assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
-      </a> </p></h4> 
-        
-    </div> 
-  </div>
+    <div class="footer">
+      <div class="container">
+        <h4>Feito com amor por aluno &heartsuit; SPTech &copy; 2024<br>
+          gabriel.ncarvalho@sptech.school<br>
+          <p> <a href="https://www.linkedin.com/in/gabriel-nogueira-carvalho-427563264/">
+              <img src="assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
+            <a href="https://github.com/GabrielNogueira33">
+              <img src="assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
+            </a>
+          </p>
+        </h4>
+
+      </div>
+    </div>
 </body>
 
 </html>
 
 <script>
+
   function cadastrar() {
     aguardar();
 
@@ -132,21 +137,21 @@
     if (validacaoCamposVazios) {
       alert("Erro: Preencha todos os campos");
 
-        finalizarAguardar();
+      finalizarAguardar();
       return false;
     }
-     else if (validacaoNome ||
-    validacaoEmail
+    else if (validacaoNome ||
+      validacaoEmail
     ) {
       alert("Erro : Preencha informações validas");
-        finalizarAguardar();
+      finalizarAguardar();
       return false;
-    } else if(validacaoSenha){
+    } else if (validacaoSenha) {
       alert("Erro : Preencha uma senha igual a confirmação ou com 6 caracteres para cima");
-        finalizarAguardar();
+      finalizarAguardar();
       return false;
     }
-     else {
+    else {
       setInterval(sumirMensagem, 5000);
     }
 
@@ -159,7 +164,7 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        jogosServer:jogosVar,
+        jogosServer: jogosVar,
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
@@ -206,9 +211,83 @@
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
-    }
+  }
 
   function sumirMensagem() {
-     cardSucesso.style.display = "none";
-   }
+    cardSucesso.style.display = "none";
+  }
+
+  const listaNomeAnonimo = ["Scorpion",
+    "Sub-Zero",
+    "Raiden",
+    "Liu",
+    "Sonya",
+    "Johnny",
+    "Kitana",
+    "Mileena",
+    "Reptile",
+    "Baraka",
+    "Doom",
+    "John",
+    "Alice",
+    "Jill",
+    "Chris",
+    "Leon",
+    "Claire",
+    "Wesker",
+    "HUNK",
+    "William",
+    "Slayer"];
+
+  const listaSobrenomeAnonimo = ["CJ",
+    "Vercetti",
+    "Bellic",
+    "Phillips",
+    "De Santa",
+    "Clinton",
+    "Freeman",
+    "Vance",
+    "G-Man",
+    "Redfield",
+    "Steve",
+    "Alex",
+    "Herobrine",
+    "Enderman",
+    "Creeper",
+    "Zombie",
+    "Skeleton",
+    "Villager",
+    "Pigman",
+    "Ghast",
+    "Kennedy"];
+
+  const nomeNoSite = [];
+
+  var idAnonimo = Number(localStorage.getItem('ID_ANONIMO'));
+
+  function souAnonimo() {
+
+    for (let i = 0; i < 21; i++) {
+      const nomeAleatorio = listaNomeAnonimo[Math.floor(Math.random() * listaNomeAnonimo.length)];
+      const sobrenomeAleatorio = listaSobrenomeAnonimo[Math.floor(Math.random() * listaSobrenomeAnonimo.length)];
+      nomeNoSite.push(`${nomeAleatorio} ${sobrenomeAleatorio}`);
+    }
+
+var nomeAnonimoVar = (sessionStorage.NOME_USUARIO = nomeNoSite[idAnonimo]);
+var idAnonimoVar = (sessionStorage.ID_ANONIMO = idAnonimo);
+
+    idAnonimo += 1
+    localStorage.setItem('ID_ANONIMO', idAnonimo)
+
+    fetch("/anonimo/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        anonimoIdServer:idAnonimoVar ,
+        anonimoNomeServer:nomeAnonimoVar,
+      }),
+    })
+  }
 </script>
