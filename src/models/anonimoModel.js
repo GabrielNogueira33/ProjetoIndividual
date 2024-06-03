@@ -1,7 +1,7 @@
 var database = require("../database/config");
 
-function cadastrar(anonimoId,anonimo) {
-    var instrucaoSql = `INSERT INTO anonimo (id, nome) VALUES ('${anonimoId},${anonimo}')`;
+function cadastrar(anonimoId,anonimoNome) {
+    var instrucaoSql = `INSERT INTO anonimo (id, nome) VALUES ('${anonimoId}','${anonimoNome}')`;
   
     return database.executar(instrucaoSql);
   }

@@ -273,8 +273,11 @@
       nomeNoSite.push(`${nomeAleatorio} ${sobrenomeAleatorio}`);
     }
 
-var nomeAnonimoVar = (sessionStorage.NOME_USUARIO = nomeNoSite[idAnonimo]);
-var idAnonimoVar = (sessionStorage.ID_ANONIMO = idAnonimo);
+var nomeAnonimoVar =  nomeNoSite[idAnonimo];
+var idAnonimoVar = idAnonimo;
+
+sessionStorage.setItem('NOME_USUARIO', nomeAnonimoVar);
+sessionStorage.setItem('ID_ANONIMO', idAnonimoVar);
 
     idAnonimo += 1
     localStorage.setItem('ID_ANONIMO', idAnonimo)
@@ -289,5 +292,8 @@ var idAnonimoVar = (sessionStorage.ID_ANONIMO = idAnonimo);
         anonimoNomeServer:nomeAnonimoVar,
       }),
     })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:' , error));
   }
 </script>

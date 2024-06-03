@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pound |Dashboard</title>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<body>
+
+    <header>
+        <span>
+            Olá <span id="span_nomeUsuario"></span>
+        </span>
+    </header>
+
+
+    <div style="width: 30vw; height:30vh;">
+        <canvas id="grafico1"></canvas>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    span_nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    const ctx = document.getElementById('grafico1');
+
+    let valoresJogos = ['RPG', 'FPS', 'Mundo aberto', 'Sobrevivência', 'Outros/diversos'];
+    let valoresVotacao = [12, 19, 3, 5, 2, 3]
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: valoresJogos,
+            datasets: [{
+                label: 'Jogos mais jogados',
+                data: valoresVotacao,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });  
+
+
+
+</script>

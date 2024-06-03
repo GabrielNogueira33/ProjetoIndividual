@@ -1,10 +1,3 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/*
-comandos para mysql server
-*/
 
 CREATE DATABASE pound;
 
@@ -35,14 +28,13 @@ CREATE TABLE pound.anonimo(
     nome VARCHAR(50)
 );
 
-create table pound.perfil (
-	id INT PRIMARY KEY,
-	fk_usuario INT,
-	fk_jogo INT,
-	FOREIGN KEY (fk_jogo) REFERENCES pesquisaJogos(id),
-    FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-);
-
 select * from pound.usuario;
 select * from pound.PesquisaJogos;
 select * from pound.anonimo;
+
+SELECT 
+            pesquisaJogos.jogo AS genero,
+            COUNT(usuario.fk_jogo) AS quantidade
+        FROM usuario
+        JOIN pesquisaJogos ON usuario.fk_jogo = pesquisaJogos.id
+        GROUP BY pesquisaJogos.jogo;
