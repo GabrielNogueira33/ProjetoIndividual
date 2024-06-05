@@ -10,11 +10,9 @@ npm i
 Logo após você configura seu usuário e senha do banco de dados
 no .env, use o database do pound e host no localhost caso queira
 uma conexão local.
-![alt text](imageEnv.png)
-![alt text](image-3.png)
 
 no repositório instalado acesse o cmd novamente e efetue esse comando
-para dar início ao site!
+abaixo para dar início ao site!
 
 npm start
 
