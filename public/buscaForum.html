@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pound | Fórum Busca</title>
+
+    <script src="./js/sessao.js"></script>
+    
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="icon" href="./imagens/pixel-art-logo.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo"><img class="logo" src="./imagens/pixel-art-logo.png">Pound</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="./dashboard/graficos.html">Dashboard</a>
+                </li>
+                <li class="agora">Fórum</li>
+                <li>|</li>
+                <p id="p_nomeUsuario"></p>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <center>
+            <div style="background-color: white;width:50%; border-radius: 3%;">
+                <h1 style="color:black">Busca dos fóruns - Escolha aqui um fórum para começar a comentar!</h1>
+        <p><a href="foruns/forumFPS.html">#FPS</a></p>
+        <p><a href="foruns/forumRPG.html">#RPG</a></p>
+        <p><a href="foruns/forumMundoAberto.html">#Mundo aberto</a></p>
+        <p><a href="foruns/forumSobrevivencia.html">#Sobrevivencia</a></p>
+        <p><a href="foruns/forumOutros.html">#Outros/Diversos</a></p>
+        <p>a</p>
+    </div>
+    </center>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <h4>Feito com amor por aluno &heartsuit; SPTech &copy; 2024<br>
+                gabriel.ncarvalho@sptech.school<br>
+                <p> <a href="https://www.linkedin.com/in/gabriel-nogueira-carvalho-427563264/">
+                        <img src="assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
+                    <a href="https://github.com/GabrielNogueira33">
+                        <img src="assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
+                    </a>
+                </p>
+            </h4>
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    p_nomeUsuario.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`
+</script>

@@ -24,7 +24,7 @@
           <a href="#">Inicial</a>
         </li>
         <li>
-          <a href="objetivos.html">Objetivos</a>
+          <a href="objetivos.html">Onu</a>
         </li>
         <li>|</li>
         <li>
@@ -41,7 +41,7 @@
   <div class="banner">
     <div class="container">
       <p>
-      <h1 style="color:aqua"> Bem vindo ao Pound, Divirta-se!</h1>
+      <h1 style="color:rgb(47, 0, 255);"> Bem vindo ao Pound, Divirta-se!</h1>
       </p>
     </div>
   </div>
@@ -53,9 +53,10 @@
           <div class="cardInicio">
             <img src="assets/imgs/logo objetivos.png ">
             <h4>Sobre o projeto</h4>
-            <p>o intuito deste projeto é fazer um fórum em que
-              as pessoas venham se conhecer e criar vínculos por suas paixões
-              em comum tanto em games como em estilos músicais e também aprender umas com as outras!</h2>
+            <p>o intuito deste projeto é fazer um fórum para 
+              demonstrar tanto minha paixão pelos games como também  
+               para representar o vínculo que as pessoas montam e criam ao jogar, por
+               meio de um fórum!
             </p>
           </div>
         </div>
@@ -75,9 +76,9 @@
             <h4>Sobre mim</h4>
             <p>Desde que eu era pequeno eu mexia muito na internet,
               sempre que eu acessava a web demonstrava grande paixão por games
-              e ouvir música,<br> até hoje é minha paixão ouvir uma música
-              nova de rock que eu acho por ai e escutar elas repetidas vezes, ou
-              achar um jogo online em que eu tenha um amigo virtual para jogar! </p>
+              e também grande curiosidade<br> para jogar novos jogos e descobrir como eles 
+              funcionavam no computador, o que acabou me gerando interesse em 
+              computação!
           </div>
         </div>
         <div class="box">
@@ -91,28 +92,51 @@
     </div>
   </div>
   <div class="box">
-    <span><img src="assets/imgs/doom guy transparent.gif">
-      Doom guy</span>
+    <div class="cardInicio">
+      <img src="imagens/estreladomario.png">
+      <h4>Jogos favoritos</h4>
+      Confira aqui alguns jogos que marcaram minha vida!
+      <button class="botao" onclick="MostrarModal()">Veja aqui</button>
+      <dialog><a href="https://killingfloor.fandom.com/wiki/Horzine"><img src="imagens/kf.jpg"></a>
+        <a href="https://loreofminecraft.fandom.com/wiki/Minecraft_Lore_Wiki"><img src="imagens/R.png"></a>
+        <a href="https://gta.fandom.com/wiki/Grand_Theft_Auto:_San_Andreas"><img src="imagens/GTA-San-Andreas-Logo.png"></a><br>
+        <a href="https://crashbandicoot.fandom.com/wiki/Crash_Twinsanity"><img src="imagens/Crashtwinsanityps2cover.jpeg"></a>
+        <a href="https://doom.fandom.com/wiki/Doom_(lore)"><img src="assets/imgs/doom guy transparent.gif"></a>
+      <p><button class="botao" onclick="fecharModal()">Fechar</button></p></dialog>
+    </div>
 
   </div>
   <article>
-    <button class="scrollTop" onclick="VoltarAoTopo()"> <!--botão para voltar ao header-->
+    <button class="scrollTop" onclick="VoltarAoTopo()"> 
       <img src="assets/imgs/scroll-toppng.png" alt="">
     </button>
   </article>
 
-  <script>
-    window.addEventListener('scroll', function () { // ação fazer o botão de voltar ao header aparecer
+  <script> // botão scrollTop
+    window.addEventListener('scroll', function () { 
       let scroll = document.querySelector('.scrollTop')
         scroll.classList.toggle('active', window.scrollY > 450)
     })
 
-    function VoltarAoTopo() { // função para o botão voltar ao topo
+    function VoltarAoTopo() { 
       window.scrollTo({
         top: 0,
           behavior: 'smooth'
       })
     }
+  </script>
+
+  <script> // botão modal
+ 
+  const modal = document.querySelector('dialog')
+
+  function MostrarModal(){
+    modal.showModal();
+  }
+
+  function fecharModal(){
+    modal.close();
+  }
   </script>
 
   <div class="footer">

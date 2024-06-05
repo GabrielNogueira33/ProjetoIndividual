@@ -31,10 +31,3 @@ CREATE TABLE pound.anonimo(
 select * from pound.usuario;
 select * from pound.PesquisaJogos;
 select * from pound.anonimo;
-
-SELECT 
-            pesquisaJogos.jogo AS genero,
-            COUNT(usuario.fk_jogo) AS quantidade
-        FROM usuario
-        JOIN pesquisaJogos ON usuario.fk_jogo = pesquisaJogos.id
-        GROUP BY pesquisaJogos.jogo;

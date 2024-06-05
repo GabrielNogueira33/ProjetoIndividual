@@ -9,51 +9,169 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<link href="../css/estilo.css" rel="stylesheet">
+<link rel="icon" href="../imagens/pixel-art-logo.png">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+
 <body>
 
-    <header>
-        <span>
-            Olá <span id="span_nomeUsuario"></span>
-        </span>
-    </header>
-
-
-    <div style="width: 30vw; height:30vh;">
-        <canvas id="grafico1"></canvas>
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo"><img class="logo" src="../imagens/pixel-art-logo.png">Pound</h1>
+            <ul class="navbar">
+                <li>
+                    Dashboard
+                </li>
+                <a href="../buscaForum.html">
+                    <li class="agora">Fórum</li>
+                </a>
+                <li>|</li>
+                Olá <span id="span_nomeUsuario"></span>
+            </ul>
+        </div>
     </div>
-
+    <center>
+        <h1>Dashboard</h1>
+        <div>
+        <div style="height: 27vh;width: 25vw;background-color: azure;border-radius: 2%; color:black">
+        estilo de jogo mais votado<div id="div_kpi"></div>
+        </div>
+        </div>
+        <div style="width: 30vw; height:40vh;background-color: bisque;margin-top: 5%;margin-bottom: 25px;">
+            <center>
+                <span style="color: black;"> Gênero de jogos mais jogados entre os jogadores do fórum!</span>
+            </center>
+            <canvas id="grafico1"></canvas>
+        </div>
+    </center>
+    <div class="footer">
+        <div class="container">
+          <h4>Feito com amor por aluno &heartsuit; SPTech &copy; 2024<br>
+            gabriel.ncarvalho@sptech.school<br>
+            <p> <a href="https://www.linkedin.com/in/gabriel-nogueira-carvalho-427563264/">
+                <img src="../assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
+              <a href="https://github.com/GabrielNogueira33">
+                <img src="../assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
+              </a>
+            </p>
+          </h4>
+  
+        </div>
+      </div>
 </body>
 
 </html>
 
 <script>
-
+    
     span_nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var valorRPG, valorFPS, valorMundoAberto, valorSobrevivencia, valorOutros;
 
-    const ctx = document.getElementById('grafico1');
+    fetch(`/grafico/obterQuantidadeRPG/`)
+        .then(resposta => resposta.json())
+        .then(grafico => {
+            valorRPG = Number(grafico[0].quantidade);
+            atualizarGrafico();
+        })
+        .catch(error => {
+            console.log(`#ERRO: ${error}`);
+        });
 
-    let valoresJogos = ['RPG', 'FPS', 'Mundo aberto', 'Sobrevivência', 'Outros/diversos'];
-    let valoresVotacao = [12, 19, 3, 5, 2, 3]
+    fetch(`/grafico/obterQuantidadeFPS/`)
+        .then(resposta => resposta.json())
+        .then(grafico => {
+            valorFPS = Number(grafico[0].quantidade); 
+            atualizarGrafico();
+        })
+        .catch(error => {
+            console.log(`#ERRO: ${error}`);
+        });
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: valoresJogos,
-            datasets: [{
-                label: 'Jogos mais jogados',
-                data: valoresVotacao,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+    fetch(`/grafico/obterQuantidadeMundoAberto/`)
+        .then(resposta => resposta.json())
+        .then(grafico => {
+            valorMundoAberto = Number(grafico[0].quantidade); 
+            atualizarGrafico();
+        })
+        .catch(error => {
+            console.log(`#ERRO: ${error}`);
+        });
+
+    fetch(`/grafico/obterQuantidadeSobrevivencia/`)
+        .then(resposta => resposta.json())
+        .then(grafico => {
+            valorSobrevivencia = Number(grafico[0].quantidade);
+            atualizarGrafico();
+        })
+        .catch(error => {
+            console.log(`#ERRO: ${error}`);
+        });
+
+    fetch(`/grafico/obterQuantidadeOutros/`)
+        .then(resposta => resposta.json())
+        .then(grafico => {
+            valorOutros = Number(grafico[0].quantidade);
+            atualizarGrafico();
+        })
+        .catch(error => {
+            console.log(`#ERRO: ${error}`);
+        });
+
+    function atualizarGrafico() {
+        if (valorRPG != undefined && valorFPS != undefined && valorMundoAberto != undefined && valorSobrevivencia != undefined && valorOutros != undefined) {
+            criarGrafico();
+        }
+    }
+
+    function criarGrafico() {
+        var ctx = document.getElementById('grafico1').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['RPG', 'FPS', 'Mundo Aberto', 'Sobrevivência', 'Outros'],
+                datasets: [{
+                    label: 'Gênero de jogos mais escolhidos',
+                    data: [valorRPG, valorFPS, valorMundoAberto, valorSobrevivencia, valorOutros],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 206, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(153, 102, 255)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });  
+        });
+        if (valorSobrevivencia > valorFPS && valorSobrevivencia > valorMundoAberto && valorSobrevivencia > 
+    valorRPG && valorSobrevivencia > valorOutros) {
+    div_kpi.innerHTML = `<span style="color:red">sobrevivência</span>
+    <div><img style="width:20%; height:20%" src="imgJogos/R.png"></div>`;
+} else if (valorFPS > valorSobrevivencia && valorFPS > valorMundoAberto && valorFPS > valorRPG && valorFPS > 
+valorOutros) {
+    div_kpi.innerHTML = `<span style="color:blue">FPS</span>
+    <div><img style="width:25%; height:25%" src="imgJogos/kf.jpg"></div>`;
+} else if (valorRPG > valorSobrevivencia && valorRPG > valorMundoAberto && valorRPG > valorFPS && valorRPG > 
+valorOutros) {
+    div_kpi.innerHTML = `<span style="color:gold">RPG</span>
+    <div><img style="width:25%; height:25%" src="imgJogos/skyrim.png"></div>`; 
+}else if (valorMundoAberto > valorSobrevivencia && valorMundoAberto > valorFPS && valorMundoAberto > valorRPG && valorMundoAberto > valorOutros) {
+    div_kpi.innerHTML = `<span style="color:purple">Mundo aberto</span>
+    <div><img style="width:25%; height:25%" src="imgJogos/GTA-San-Andreas-Logo.png"></div>`;
+} else if (valorOutros > valorSobrevivencia && valorOutros > valorFPS && valorOutros > valorRPG && valorOutros > valorMundoAberto) {
+    div_kpi.innerHTML = `<span style="color:green">Outros/diversos</span>
+    <div><img style="width:35%; height:35%" src="imgJogos/crossover.jpg"></div>`;
+}else{
+    div_kpi.innerHTML = `Empate`
+}
 
-
-
+    }   
 </script>

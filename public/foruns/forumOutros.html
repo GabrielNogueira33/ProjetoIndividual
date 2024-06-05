@@ -8,10 +8,10 @@
 
     <title>Pound | Fórum</title>
 
-    <script src="./js/sessao.js"></script>
+    <script src="../js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./imagens/pixel-art-logo.png">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="icon" href="../imagens/pixel-art-logo.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -20,10 +20,10 @@
     <!--header inicio-->
     <div class="header">
         <div class="container">
-            <h1 class="titulo"><img class="logo" src="./imagens/pixel-art-logo.png">Pound</h1>
+            <h1 class="titulo"><img class="logo" src="../imagens/pixel-art-logo.png">Pound</h1>
             <ul class="navbar">
                 <li>
-                    <a href="./dashboard/graficos.html">Dashboard</a>
+                    <a href="../dashboard/graficos.html">Dashboard</a>
                 </li>
                 <li class="agora">Fórum</li>
                 <li>|</li>
@@ -36,7 +36,7 @@
     <!-- fórum inicio -->
     <div class="forum">
         <div class="container">
-            <h2>Fórum</h2>
+            <h2>Fórum - categoria de jogos diversos</h2>
             <button id="button_topico" style="height: 20px; width: 200px;">
                 Criar tópico
             </button>
@@ -54,9 +54,9 @@
             <h4>Feito com amor por aluno &heartsuit; SPTech &copy; 2024<br>
                 gabriel.ncarvalho@sptech.school<br>
                 <p> <a href="https://www.linkedin.com/in/gabriel-nogueira-carvalho-427563264/">
-                        <img src="assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
+                        <img src="../assets/imgs/linkedin.jpg" style="width:30px;height:30px"></a>
                     <a href="https://github.com/GabrielNogueira33">
-                        <img src="assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
+                        <img src="../assets/imgs/GitHub_Invertocat_Logo.svg.png" style="width:30px;height:30px">
                     </a>
                 </p>
             </h4>
@@ -66,7 +66,6 @@
 </body>
 
 </html>
-
 
 <script>
 
@@ -79,8 +78,8 @@
     let insercaoTopico = document.getElementById('insercao_topico');
 
     window.onload = () => {
-        if (localStorage.getItem('forumData')) {
-            insercaoTopico.innerHTML = localStorage.getItem('forumData');
+        if (localStorage.getItem('forumDataOutros')) {
+            insercaoTopico.innerHTML = localStorage.getItem('forumDataOutros');
             anexar();
         }
     };
@@ -114,7 +113,7 @@
     });
 
     function GuardarLocalStorage() {
-        localStorage.setItem('forumData', insercaoTopico.innerHTML);
+        localStorage.setItem('forumDataOutros', insercaoTopico.innerHTML);
 
     }
 
