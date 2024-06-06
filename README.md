@@ -17,4 +17,6 @@ abaixo para dar início ao site!
 npm start
 
 
+link do trello utilizado : https://trello.com/b/Ops60z1b/pound-projeto-individual 
+
 
