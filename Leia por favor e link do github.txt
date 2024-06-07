@@ -1,0 +1,7 @@
+Eu me esqueci na apresentação do projeto Individual de explicar sobre o sou anônimo, basicamente é um cadastro que consta no banco de dados
+porém ele não cadastra seu jogo favorito e também ele escolhe seu nome aleatoriamente, tudo isso por meio dos vetores de nome e sobrenome
+funcionando junto do for e math random,ele tem uma tabela no banco chamada anonimo, e ele está localizado na parte do cadastro.html
+
+Grato pela atenção :)
+
+link caso precise: https://github.com/GabrielNogueira33/ProjetoIndividual

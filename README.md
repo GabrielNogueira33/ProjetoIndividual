@@ -18,5 +18,6 @@ npm start
 
 
 link do trello utilizado : https://trello.com/b/Ops60z1b/pound-projeto-individual 
+link convite do trello utilizado : https://trello.com/invite/b/Ops60z1b/ATTI601efd3de77b1ed77284439f43499d42742652D4/pound-projeto-individual
 
 
